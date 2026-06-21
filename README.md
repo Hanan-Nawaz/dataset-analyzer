@@ -1,4 +1,4 @@
-![Tests](https://github.com/Hanan-Nawaz/dataset-analyzer/actions/workflows/testing.yml/badge.svg)
+![Tests](https://github.com/Hanan-Nawaz/dataset-analyzer/actions/workflows/ci.yml/badge.svg)
 ![Coverage](Other/badges/coverage_badge.svg)
 
 # 📊 Dataset Analyzer CLI
