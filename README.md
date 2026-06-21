@@ -1,3 +1,6 @@
+![Tests](https://github.com/Hanan-Nawaz/dataset-analyzer/actions/workflows/testing.yml/badge.svg)
+![Coverage](Other/badges/coverage_badge.svg)
+
 # 📊 Dataset Analyzer CLI
 
 A lightweight command-line tool for analyzing **CSV** and **Excel** datasets.
