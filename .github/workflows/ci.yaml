@@ -1,0 +1,51 @@
+name: Testing
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      -master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up latest Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: |
+          uv pip install --system -e .
+
+      - name: Run tests with coverage
+        run: |
+          uv run pytest --cov=src --cov-report=xml:coverage.xml --cov-report=term-missing tests -v
+
+      - name: Create badge directory
+        run: mkdir -p Other/badges
+
+      - name: Generate coverage badge
+        run: |
+          uv pip install --system "genbadge[coverage]"
+          genbadge coverage \
+            -i coverage.xml \
+            -o Other/badges/coverage_badge.svg
+
+      - name: Commit badge
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update coverage badge"
+          file_pattern: Other/badges/coverage_badge.svg
