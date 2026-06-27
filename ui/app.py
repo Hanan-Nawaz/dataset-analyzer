@@ -16,4 +16,3 @@ Use the **sidebar (left side)** to navigate:
 - 🧬 Find duplicates
 - 📈 See statistics
 """)
-  
