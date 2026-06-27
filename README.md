@@ -7,6 +7,9 @@ A lightweight command-line tool for analyzing **CSV** and **Excel** datasets.
 
 The tool provides a quick overview of a dataset's structure, data quality, and basic statistics by simply passing the dataset path as a command-line argument.
 
+**Published Project:**  
+https://dataset-analyzer-tool.streamlit.app/
+
 ---
 
 ## ✨ Features
@@ -37,6 +40,11 @@ dataset-analyzer/
 │   ├── __init__.py
 │   ├── analyze_dataset.py
 │   └── load_data.py
+│
+├── ui/
+│   ├── app.py
+│   └── pages
+│        └── ...
 │
 ├── tests/
 │   └── test_analyze_dataset.py
@@ -121,42 +129,6 @@ The dataset can be located anywhere on your computer. Simply provide its file pa
 
 ---
 
-## 📊 Example Output
-
-```text
-============================================================
-Dataset Analysis Report
-============================================================
-
-Basic Information
-Rows      : 10
-Columns   : 4
-
-Column Types
-----------------------------------------
-id      int64
-name    object
-age     int64
-city    object
-
-Missing Values
-----------------------------------------
-Column     Null     Zero
-id          0        0
-name        1        0
-age         0        1
-city        0        0
-
-Duplicate Rows : 1
-
-Dataset Statistics
-----------------------------------------
-...
-
-Memory Usage : 1376 bytes
-```
-
----
 
 ## 🧪 Running Tests
 
