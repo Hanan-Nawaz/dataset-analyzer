@@ -1,6 +1,6 @@
 import pandas as pd
 
-def load_data(file_path: str) -> pd.DataFrame:
+def load_data(file) -> pd.DataFrame:
     """Convert file into the Dataframe
 
     Parameters
@@ -15,11 +15,11 @@ def load_data(file_path: str) -> pd.DataFrame:
     """        
 
     try:
-        if "csv" in file_path:
-            df = pd.read_csv(file_path)
+        if file.name.endswith(".csv"):
+            df = pd.read_csv(file)
             return df
-        elif "xlsx" in file_path:
-            df = pd.read_excel(file_path)
+        elif file.name.endswith(".xlsx"):
+            df = pd.read_excel(file)
             return df
         else:
             print("The file must be csv or excel file")
