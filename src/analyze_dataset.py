@@ -1,6 +1,6 @@
 import pandas as pd
 
-def show_basic_info(df: pd.DataFrame) -> list:
+def show_basic_info(df: pd.DataFrame) -> pd.DataFrame:
     """Gives us number of columns and rows
 
     Parameters
@@ -14,9 +14,14 @@ def show_basic_info(df: pd.DataFrame) -> list:
         Returns a list that contains the [No. of Cols, No. of Rows]
     """
 
-    return [df.columns.value_counts().sum(), df[df.columns[0]].size]
+    stats = {
+        "Rows": len(df),
+        "Columns": len(df.columns)
+    }
 
-def show_columns_types(df: pd.DataFrame) -> list:
+    return pd.DataFrame([stats])
+    
+def show_columns_types(df: pd.DataFrame) -> pd.DataFrame:
     """Gives us the data types of columns
 
     Parameters
@@ -26,10 +31,14 @@ def show_columns_types(df: pd.DataFrame) -> list:
 
     Returns
     -------
-    list
-        Gives us a list, [(column_name, data_type)]
+    pd.DataFrame
+        Gives us a dataframe
     """
-    return list(zip(df.columns, df.dtypes.astype(str)))
+    
+    return pd.DataFrame({
+        "Column Name": list(df.columns),
+        "Data Type": list(df.dtypes.astype(str))
+    })
 
 def show_missing_values(df: pd.DataFrame) -> dict:
     """Gives us a count of Null and Zero values per column
@@ -74,7 +83,7 @@ def show_duplicate_values(df: pd.DataFrame) -> int:
 
     return df.duplicated().sum()
 
-def show_stats(df: pd.DataFrame) -> dict:
+def show_stats(df: pd.DataFrame):
     """Gives us the Stats about the dataset
 
     Parameters
@@ -88,12 +97,4 @@ def show_stats(df: pd.DataFrame) -> dict:
         dict of the df.info()
     """
 
-    info = {
-        "columns": list(df.columns),
-        "dtypes": df.dtypes.astype(str).to_dict(),
-        "non_null_count": df.count().to_dict(),
-        "memory_usage": int(df.memory_usage(deep=True).sum()),
-        "shape": df.shape,
-    }
-
-    return info
+    return df.info()
